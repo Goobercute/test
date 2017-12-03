@@ -92,7 +92,7 @@ public class BookSearch extends JFrame {
 		}
 
 	}
-	
+	//书名查找
 	class Search1Handeler implements ActionListener{
 
 		@Override
@@ -101,6 +101,16 @@ public class BookSearch extends JFrame {
 			booknamesearch.setVisible(true);
 			BookSearch.this.dispose();
 		}
+		
+	}
+	
+	//作者查找 
+	class Search2Handler implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			
+		}
+		
 		
 	}
 	

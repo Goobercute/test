@@ -25,10 +25,31 @@ public class Control {
 		flag=userdo.getbackBook(book, user);
 		return flag;
 	}
-	public List Search1(Book book,User user) {
+	public List Search1(Book book,User user) {    //书名
 		List<Book> list = new ArrayList<Book>();
 		Userdo userdo= new Userdo();
 		list=userdo.searchBook1(book,user);
+		return list;
+	}
+	
+	public List Search2(Book book,User user) {    //作者
+		List<Book> list = new ArrayList<Book>();
+		Userdo userdo= new Userdo();
+		list=userdo.searchBook2(book,user);
+		return list;
+	}
+	
+	public List Search3(Book book,User user) {    //书号
+		List<Book> list = new ArrayList<Book>();
+		Userdo userdo= new Userdo();
+		list=userdo.searchBook3(book,user);
+		return list;
+	}
+	
+	public List Search4(Book book,User user) {    //出版社
+		List<Book> list = new ArrayList<Book>();
+		Userdo userdo= new Userdo();
+		list=userdo.searchBook4(book,user);
 		return list;
 	}
 }

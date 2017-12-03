@@ -24,15 +24,15 @@ import Controler.Control;
 import Model.Book;
 import Model.User;
 
-public class BookNameSearch extends JFrame {
+public class BookAuthorSearch extends JFrame {
 
 	private JPanel contentPane;
 	public static int choice;
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension d = tk.getScreenSize();
 	Runnable runnable;
-	JTextArea bookname0;
-	JTextField bookname1;
+	JTextArea bookauthor0;
+	JTextField bookauthor1;
 	JTable booklist;
 	 JScrollPane scrollPane;
 	static User user1 = new User();
@@ -43,8 +43,8 @@ public class BookNameSearch extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookNameSearch booknamesearch = new BookNameSearch(user1);
-					booknamesearch.setVisible(true);
+					BookAuthorSearch bookAuthorsearch = new BookAuthorSearch(user1);
+					bookAuthorsearch.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +53,7 @@ public class BookNameSearch extends JFrame {
 
 	}
 
-	public BookNameSearch(User user) {
+	public BookAuthorSearch(User user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		Point p = new Point((d.width - d.width / 3) / 2, (d.height - d.height / 3) / 2);
@@ -62,8 +62,8 @@ public class BookNameSearch extends JFrame {
 		this.setSize(d.width / 3, d.height / 3);
 		setContentPane(contentPane);
 		// 设置文本域组件
-		bookname0 = new JTextArea("输入你要查询的书名：");
-		bookname1 = new JTextField(10);
+		bookauthor0 = new JTextArea("输入你要查询的作者：");
+		bookauthor1 = new JTextField(10);
 		
 		booklist = new JTable();
 		scrollPane = new JScrollPane(booklist);
@@ -80,7 +80,7 @@ public class BookNameSearch extends JFrame {
         booklist.setModel(tableModel);
 		// 设置按钮
 		JButton search = new JButton("确认查询");
-		search.addActionListener(new NameSearchHandler());
+		search.addActionListener(new AuthorSearchHandler());
 		JButton back = new JButton("返回");
 		back.addActionListener(new BackHandeler());
 		// 布局
@@ -88,8 +88,8 @@ public class BookNameSearch extends JFrame {
 		this.setLayout(borderlayout);
 		// 添加 北部
 		JPanel centerPane1 = new JPanel();
-		centerPane1.add(bookname0);
-		centerPane1.add(bookname1);
+		centerPane1.add(bookauthor0);
+		centerPane1.add(bookauthor1);
 		centerPane1.add(search);
 		centerPane1.add(back);
 		this.add(centerPane1, BorderLayout.NORTH);
@@ -110,12 +110,12 @@ public class BookNameSearch extends JFrame {
 			// TODO Auto-generated method s
 			BookSearch booksearch = new BookSearch(user1);
 			booksearch.setVisible(true);
-			BookNameSearch.this.dispose();
+			BookAuthorSearch.this.dispose();
 		}
 
 	}
 
-	class NameSearchHandler implements ActionListener {
+	class AuthorSearchHandler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -124,9 +124,9 @@ public class BookNameSearch extends JFrame {
 			Book book = new Book();
 			Book bookresult =new Book();
 			//获得要搜索的书名
-			book.setBookName(bookname1.getText().toString());
+			book.setBookAuthor(bookauthor1.getText().toString());
 			//返回结果
-			List<Book> list = control.Search1(book, user1);
+			List<Book> list = control.Search2(book, user1);
 			if (list.size()!=0) { 
 
 			result = new Object [list.size()][5];
@@ -138,8 +138,8 @@ public class BookNameSearch extends JFrame {
 				result[i][3]=bookresult.getBookNumber();
 				result[i][4]=bookresult.getBookShuliang();
 			}
-			BookNameSearch.this.dispose();
-			new BookNameSearch(user1);
+			BookAuthorSearch.this.dispose();
+			new BookAuthorSearch(user1);
 			}else {
 				JOptionPane.showMessageDialog(null, "【失败啦】", "没有找到该书信息", JOptionPane.ERROR_MESSAGE);
 			}
@@ -159,3 +159,5 @@ public class BookNameSearch extends JFrame {
 
 	}
 }
+
+

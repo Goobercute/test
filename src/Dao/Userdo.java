@@ -238,7 +238,82 @@ public class Userdo implements UserDao {
 		}
 		return list;
 	}
-
+	
+	public List searchBook2(Book book,User user) {
+		String bookauthor = book.getBookAuthor();
+		List<Book> list = new ArrayList();
+		String sql = "select * from book where bookauthor='" + bookauthor + "'";
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+		     while(rs.next())
+             { 
+               Book bookres=new Book();
+               bookres.setBookName(rs.getString(1));
+               bookres.setBookAuthor(rs.getString(2));
+               bookres.setBookPublisher(rs.getString(3));
+               bookres.setBookNumber(rs.getString(4));
+               bookres.setBookShuliang(rs.getInt(5));
+        
+              list.add(bookres);
+              }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
+	public List searchBook3(Book book,User user) {
+		String booknumber = book.getBookNumber();
+		List<Book> list = new ArrayList();
+		String sql = "select * from book where booknumber='" + booknumber + "'";
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+		     while(rs.next())
+             { 
+               Book bookres=new Book();
+               bookres.setBookName(rs.getString(1));
+               bookres.setBookAuthor(rs.getString(2));
+               bookres.setBookPublisher(rs.getString(3));
+               bookres.setBookNumber(rs.getString(4));
+               bookres.setBookShuliang(rs.getInt(5));
+        
+              list.add(bookres);
+              }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public List searchBook4(Book book,User user) {
+		String bookpublisher = book.getBookPublisher();
+		List<Book> list = new ArrayList();
+		String sql = "select * from book where publisher='" + bookpublisher + "'";
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+		     while(rs.next())
+             { 
+               Book bookres=new Book();
+               bookres.setBookName(rs.getString(1));
+               bookres.setBookAuthor(rs.getString(2));
+               bookres.setBookPublisher(rs.getString(3));
+               bookres.setBookNumber(rs.getString(4));
+               bookres.setBookShuliang(rs.getInt(5));
+        
+              list.add(bookres);
+              }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 	public boolean selfInfo(User user) {
 
 		return false;
