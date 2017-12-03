@@ -60,7 +60,7 @@ public class Login extends JFrame {
 		JButton bCenterLogin = new JButton("确认登陆");
 		bCenterLogin.addActionListener(new LoginHandeler());
 		JButton bCenterChange = new JButton("修改密码");
-
+		bCenterChange.addActionListener(new ChangeHandeler());
 		// 输入框
 		usercard = new JTextField();
 		password = new JTextField();
@@ -122,6 +122,17 @@ public class Login extends JFrame {
 			}
 		}
 
+	}
+	
+	class ChangeHandeler implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Change change = new Change();
+			
+			Login.this.dispose();
+		}
+		
 	}
 
 

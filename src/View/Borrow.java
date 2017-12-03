@@ -23,10 +23,8 @@ import View.Login.LoginHandeler;
 
 public class Borrow extends JFrame {
 	private JPanel contentPane;
-	public static int choice;
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension d = tk.getScreenSize();
-	Runnable runnable;
 	JTextArea bookname0;
 	JTextArea booknumber0;
 	JTextField bookname;

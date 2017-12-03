@@ -52,4 +52,16 @@ public class Control {
 		list=userdo.searchBook4(book,user);
 		return list;
 	}
+	public List SelfInfo(User user) {
+		Userdo userdo = new Userdo();
+		List<User> list=userdo.selfInfo(user);
+		return list;
+	}
+	
+	public boolean Change(User user) {
+		boolean flag= false;
+		Userdo userdo = new Userdo();
+		flag=userdo.change(user);
+		return flag;
+	}
 }

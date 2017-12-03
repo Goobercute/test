@@ -70,6 +70,7 @@ public class UserMenu extends JFrame {
 		button1.addActionListener(new borrowBookhandler());
 		button2.addActionListener(new backBookhandler());
 		button3.addActionListener(new bookSearchHandler());
+		button4.addActionListener(new SelfInfoHandler());
 		user1.setUsercard(user.getUsercard());
 		user1.setPassword(user.getPassword());
 		setVisible(true);
@@ -104,6 +105,17 @@ public class UserMenu extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			BookSearch booksearch = new BookSearch(user1);
 			booksearch.setVisible(true);
+			UserMenu.this.dispose();
+
+		}
+
+	}
+	class SelfInfoHandler implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			SelfInfo selfinfo = new SelfInfo(user1);
+			selfinfo.setVisible(true);
 			UserMenu.this.dispose();
 
 		}

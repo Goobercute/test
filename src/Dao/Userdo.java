@@ -214,110 +214,149 @@ public class Userdo implements UserDao {
 		return false;
 	}
 
-	public List searchBook1(Book book,User user) {
+	public List searchBook1(Book book, User user) {
 		String bookname = book.getBookName();
 		List<Book> list = new ArrayList();
 		String sql = "select * from book where bookname='" + bookname + "'";
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
-		     while(rs.next())
-             { 
-               Book bookres=new Book();
-               bookres.setBookName(rs.getString(1));
-               bookres.setBookAuthor(rs.getString(2));
-               bookres.setBookPublisher(rs.getString(3));
-               bookres.setBookNumber(rs.getString(4));
-               bookres.setBookShuliang(rs.getInt(5));
-        
-              list.add(bookres);
-              }
+			while (rs.next()) {
+				Book bookres = new Book();
+				bookres.setBookName(rs.getString(1));
+				bookres.setBookAuthor(rs.getString(2));
+				bookres.setBookPublisher(rs.getString(3));
+				bookres.setBookNumber(rs.getString(4));
+				bookres.setBookShuliang(rs.getInt(5));
+
+				list.add(bookres);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	public List searchBook2(Book book,User user) {
+
+	public List searchBook2(Book book, User user) {
 		String bookauthor = book.getBookAuthor();
 		List<Book> list = new ArrayList();
 		String sql = "select * from book where bookauthor='" + bookauthor + "'";
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
-		     while(rs.next())
-             { 
-               Book bookres=new Book();
-               bookres.setBookName(rs.getString(1));
-               bookres.setBookAuthor(rs.getString(2));
-               bookres.setBookPublisher(rs.getString(3));
-               bookres.setBookNumber(rs.getString(4));
-               bookres.setBookShuliang(rs.getInt(5));
-        
-              list.add(bookres);
-              }
+			while (rs.next()) {
+				Book bookres = new Book();
+				bookres.setBookName(rs.getString(1));
+				bookres.setBookAuthor(rs.getString(2));
+				bookres.setBookPublisher(rs.getString(3));
+				bookres.setBookNumber(rs.getString(4));
+				bookres.setBookShuliang(rs.getInt(5));
+
+				list.add(bookres);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	
-	public List searchBook3(Book book,User user) {
+
+	public List searchBook3(Book book, User user) {
 		String booknumber = book.getBookNumber();
 		List<Book> list = new ArrayList();
 		String sql = "select * from book where booknumber='" + booknumber + "'";
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
-		     while(rs.next())
-             { 
-               Book bookres=new Book();
-               bookres.setBookName(rs.getString(1));
-               bookres.setBookAuthor(rs.getString(2));
-               bookres.setBookPublisher(rs.getString(3));
-               bookres.setBookNumber(rs.getString(4));
-               bookres.setBookShuliang(rs.getInt(5));
-        
-              list.add(bookres);
-              }
+			while (rs.next()) {
+				Book bookres = new Book();
+				bookres.setBookName(rs.getString(1));
+				bookres.setBookAuthor(rs.getString(2));
+				bookres.setBookPublisher(rs.getString(3));
+				bookres.setBookNumber(rs.getString(4));
+				bookres.setBookShuliang(rs.getInt(5));
+
+				list.add(bookres);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
-	
-	public List searchBook4(Book book,User user) {
+
+	public List searchBook4(Book book, User user) {
 		String bookpublisher = book.getBookPublisher();
 		List<Book> list = new ArrayList();
 		String sql = "select * from book where publisher='" + bookpublisher + "'";
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
-		     while(rs.next())
-             { 
-               Book bookres=new Book();
-               bookres.setBookName(rs.getString(1));
-               bookres.setBookAuthor(rs.getString(2));
-               bookres.setBookPublisher(rs.getString(3));
-               bookres.setBookNumber(rs.getString(4));
-               bookres.setBookShuliang(rs.getInt(5));
-        
-              list.add(bookres);
-              }
+			while (rs.next()) {
+				Book bookres = new Book();
+				bookres.setBookName(rs.getString(1));
+				bookres.setBookAuthor(rs.getString(2));
+				bookres.setBookPublisher(rs.getString(3));
+				bookres.setBookNumber(rs.getString(4));
+				bookres.setBookShuliang(rs.getInt(5));
+
+				list.add(bookres);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
-	public boolean selfInfo(User user) {
 
-		return false;
+	public List selfInfo(User user) {
+		String sql = "select * from user where usercard='" + user.getUsercard() + "' and password='"
+				+ user.getPassword() + "'";
+		List<User> list = new ArrayList();
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
 
+			while (rs.next()) {
+				User user1 = new User();
+				user1.setName(rs.getString(3));
+				user1.setUsercard(rs.getString(1));
+				user1.setBook1(rs.getString(4));
+				user1.setBook2(rs.getString(5));
+				user1.setBook3(rs.getString(6));
+				user1.setBook1num(rs.getString(7));
+				user1.setBook2num(rs.getString(8));
+				user1.setBook3num(rs.getString(9));
+				user1.setBook1borrowtime(rs.getDate(10));
+				user1.setBook1backtime(rs.getDate(11));
+				user1.setBook2borrowtime(rs.getDate(12));
+				user1.setBook2backtime(rs.getDate(13));
+				user1.setBook3borrowtime(rs.getDate(14));
+				user1.setBook3backtime(rs.getDate(15));
+				list.add(user1);
+
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return list;
+
+	}
+	public boolean change(User user) {
+		boolean flag= false;
+		String sql = "update user set password='"+user.getNewpassword()+"' where password='"+user.getPassword()+"'and usercard='"+user.getUsercard()+"'";
+		try {
+			st=con.createStatement();
+			if(1==st.executeUpdate(sql))
+				flag=true;
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }

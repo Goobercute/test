@@ -15,8 +15,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Model.User;
-import View.Back.BackBookHandeler;
-import View.Back.BackHandeler;
 
 public class BookSearch extends JFrame {
 
@@ -61,7 +59,9 @@ public class BookSearch extends JFrame {
 		JButton Search3 = new JButton("书号查找");
 		JButton Search4 = new JButton("出版社查找");
 		Search1.addActionListener(new Search1Handeler());
-
+		Search2.addActionListener(new Search2Handler());
+		Search3.addActionListener(new Search3Handler());
+		Search4.addActionListener(new Search4Handler());
 		
 		JButton back = new JButton("返回");
 		back.addActionListener(new BackHandeler());
@@ -107,11 +107,33 @@ public class BookSearch extends JFrame {
 	//作者查找 
 	class Search2Handler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			
+			BookAuthorSearch bookauthorsearch = new BookAuthorSearch(user1);
+			bookauthorsearch.setVisible(true);
+			BookSearch.this.dispose();
 			
 		}
-		
-		
+
 	}
 	
+	//书号查找
+	class Search3Handler implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			BookNumberSearch booknumbersearch = new BookNumberSearch(user1);
+			booknumbersearch.setVisible(true);
+			BookSearch.this.dispose();
+			
+		}
+
+	}
+	
+	//出版社查找
+	class Search4Handler implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			BookPublisherSearch bookpublishersearch = new BookPublisherSearch(user1);
+			bookpublishersearch.setVisible(true);
+			BookSearch.this.dispose();
+			
+		}
+
+	}
 }
