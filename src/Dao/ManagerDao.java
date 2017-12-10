@@ -1,11 +1,19 @@
 package Dao;
+
+import java.util.List;
+
 import Model.*;
 
 public interface ManagerDao {
 	public boolean Login(Manager manager);
-	public boolean addBook(Book book);
+
+	public boolean BookCaibian(Book book);
+
 	public boolean deleteBook(Book book);
-	public boolean searchBook(Book book);
+
 	public boolean addUser(User user);
-	public boolean deleteBokk(User user);
+
+	public boolean deleteUser(User user);
+	
+	public List<User> SearchUser(User user);
 }

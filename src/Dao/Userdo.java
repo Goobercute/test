@@ -345,15 +345,17 @@ public class Userdo implements UserDao {
 		return list;
 
 	}
+
 	public boolean change(User user) {
-		boolean flag= false;
-		String sql = "update user set password='"+user.getNewpassword()+"' where password='"+user.getPassword()+"'and usercard='"+user.getUsercard()+"'";
+		boolean flag = false;
+		String sql = "update user set password='" + user.getNewpassword() + "' where password='" + user.getPassword()
+				+ "'and usercard='" + user.getUsercard() + "'";
 		try {
-			st=con.createStatement();
-			if(1==st.executeUpdate(sql))
-				flag=true;
+			st = con.createStatement();
+			if (1 == st.executeUpdate(sql))
+				flag = true;
 		} catch (SQLException e) {
-		
+
 			e.printStackTrace();
 		}
 		return flag;

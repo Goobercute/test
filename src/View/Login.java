@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -22,7 +23,7 @@ public class Login extends JFrame {
 	JTextArea bCenterCard;
 	JTextArea bCenterPassword;
 	JTextField usercard;
-	JTextField password;
+	JPasswordField password;
 	static User user = new User();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,7 +64,7 @@ public class Login extends JFrame {
 		bCenterChange.addActionListener(new ChangeHandeler());
 		// 输入框
 		usercard = new JTextField();
-		password = new JTextField();
+		password = new JPasswordField();
 		// 容器嵌套
 		JPanel centerPanel = new JPanel();
 		centerPanel.add(bCenterCard);
@@ -109,7 +110,8 @@ public class Login extends JFrame {
 			Control control = new Control();
 			
 			user.setUsercard(usercard.getText().toString());
-			user.setPassword(password.getText().toString());
+			user.setPassword(String.valueOf(password.getPassword()));    //password返回的是一个Char数组 要用String.valueof转换为string
+		
 			boolean flag = control.UserLogin(user);
 			if (flag == true) {
 				JOptionPane.showMessageDialog(null, "【成功啦】", "登录成功", JOptionPane.PLAIN_MESSAGE);
