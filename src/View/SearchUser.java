@@ -90,7 +90,7 @@ public class SearchUser extends JFrame {
      		// 添加 中部
      		this.add(scrollPane, BorderLayout.CENTER);
      		
-     		this.setResizable(false);
+   
      		this.setVisible(true);
 	}
 	class BackHandeler implements ActionListener {

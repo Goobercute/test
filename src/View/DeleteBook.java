@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Point;
@@ -23,6 +24,7 @@ public class DeleteBook extends JFrame {
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension d = tk.getScreenSize();
 	JTextField booknumber;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -46,44 +48,48 @@ public class DeleteBook extends JFrame {
 		this.setSize(d.width / 3, d.height / 3);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		JLabel inf = new JLabel("请先确保该书没有被借出！");
+		inf.setBounds(160, 50, 200, 30);
+		inf.setForeground(Color.red);
 		JLabel lb1 = new JLabel("要删除的书的书号");
 		JButton jb1 = new JButton("确定清除库存");
 		JButton jb2 = new JButton("返回");
-		jb2.setBounds(175,190,120,30);
+		jb2.setBounds(175, 190, 120, 30);
 		booknumber = new JTextField();
-		lb1.setBounds(100,100,120,30);
+		lb1.setBounds(100, 100, 120, 30);
 		jb2.addActionListener(new BackHandler());
-		booknumber.setBounds(250,100,120,30);
-		jb1.setBounds(175,150,120,30);
+		booknumber.setBounds(250, 100, 120, 30);
+		jb1.setBounds(175, 150, 120, 30);
 		jb1.addActionListener(new DeleteHandler());
 		contentPane.add(lb1);
 		contentPane.add(booknumber);
 		contentPane.add(jb1);
 		contentPane.add(jb2);
+		contentPane.add(inf);
 		setVisible(true);
 	}
-	
-	class DeleteHandler implements ActionListener{
+
+	class DeleteHandler implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			book.setBookNumber(booknumber.getText());
-			if(book.getBookNumber().equals("")) {
+			if (book.getBookNumber().equals("")) {
 				JOptionPane.showMessageDialog(null, "【失败啦】", "输入错误", JOptionPane.ERROR_MESSAGE);
-			}else {
+			} else {
 				Control1 control1 = new Control1();
-				if(control1.Delete(book)) {
+				if (control1.Delete(book)) {
 					JOptionPane.showMessageDialog(null, "【成功啦】", "删除成功", JOptionPane.PLAIN_MESSAGE);
 					DeleteBook.this.dispose();
 					new DeleteBook();
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "【失败啦】", "删除错误", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
-		
+
 	}
-	
-	class BackHandler implements ActionListener{
+
+	class BackHandler implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
@@ -91,7 +97,7 @@ public class DeleteBook extends JFrame {
 			managermenu.setVisible(true);
 			DeleteBook.this.dispose();
 		}
-		
+
 	}
 
 }

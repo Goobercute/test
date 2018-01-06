@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -20,16 +21,16 @@ import Model.User;
 
 public class Change extends JFrame {
 	private JPanel contentPane;
-	
+
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension d = tk.getScreenSize();
 	JTextArea usercard0;
 	JTextArea oldpassword0; // 旧密码
 	JTextArea password1; // 新密码
 	JTextArea password2; // 确认新密码
-	JTextField oldpassword1; // 旧密码
-	JTextField newpassword1; // 新密码
-	JTextField newpassword2; // 确认新密码
+	JPasswordField oldpassword1; // 旧密码
+	JPasswordField newpassword1; // 新密码
+	JPasswordField newpassword2; // 确认新密码
 	JTextField usercard1;
 
 	public static void main(String[] args) {
@@ -58,13 +59,13 @@ public class Change extends JFrame {
 		usercard1 = new JTextField();
 		oldpassword0 = new JTextArea("请输入旧密码");
 
-		oldpassword1 = new JTextField();
+		oldpassword1 = new JPasswordField();
 		password1 = new JTextArea("请输入新密码");
 
-		newpassword1 = new JTextField();
+		newpassword1 = new JPasswordField();
 		password2 = new JTextArea("确认新密码");
 
-		newpassword2 = new JTextField();
+		newpassword2 = new JPasswordField();
 		JButton back = new JButton("返回");
 		back.addActionListener(new BackHandeler());
 		JButton change = new JButton("确认修改");
@@ -104,20 +105,25 @@ public class Change extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			User user = new User();
-			if(newpassword1.getText().toString().equals(newpassword2.getText().toString())) {
+			System.out.println(newpassword1.getPassword());
+			System.out.println(newpassword2.getPassword());
+			if (String.valueOf(newpassword1.getPassword()).equals(String.valueOf(newpassword2.getPassword()))) {
 				user.setUsercard(usercard1.getText().toString());
-				user.setPassword(oldpassword1.getText().toString());
-				user.setNewpassword(newpassword1.getText().toString());
+				System.out.println(String.valueOf(oldpassword1.getPassword()));
+				String old = String.valueOf(oldpassword1.getPassword());
+				String new1 = String.valueOf(newpassword1.getPassword());
+				user.setPassword(old);
+				user.setNewpassword(new1);
 				Control control = new Control();
 				boolean flag = control.Change(user);
-				if(flag==true) {
+				if (flag == true) {
 					JOptionPane.showMessageDialog(null, "【成功啦】", "修改成功", JOptionPane.PLAIN_MESSAGE);
 					Login login = new Login();
 					Change.this.dispose();
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(null, "用户名或密码错误", "修改失败", JOptionPane.ERROR_MESSAGE);
 				}
-			}else {
+			} else {
 				JOptionPane.showMessageDialog(null, "【两次输入的新密码不同】", "修改失败", JOptionPane.ERROR_MESSAGE);
 			}
 

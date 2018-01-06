@@ -52,7 +52,7 @@ public class Userdo implements UserDao {
 	}
 
 	public boolean getbackBook(Book book, User user) {
-		String sql = "select * from book where booknumber='" + book.getBookNumber() + "'";
+		String sql = "select * from book where booknumber='" + book.getBookNumber() + "' and bookname='"+book.getBookName()+"'";
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
@@ -110,7 +110,7 @@ public class Userdo implements UserDao {
 	}
 
 	public boolean borrowBook(Book book, User user) {
-		String sql = "select * from book where booknumber='" + book.getBookNumber() + "'";
+		String sql = "select * from book where booknumber='" + book.getBookNumber() + "' and bookname='"+book.getBookName()+"'";
 		Calendar calendar = new GregorianCalendar();
 
 		Date day = new Date(calendar.getTimeInMillis());
@@ -179,7 +179,7 @@ public class Userdo implements UserDao {
 								sql = "update book set bookshuliang='" + num + "'where booknumber='"
 										+ book.getBookNumber() + "'";
 								st.executeUpdate(sql);
-								sql = "update user set book1borrowtime='" + day + "',book3backtime='" + day1
+								sql = "update user set book3borrowtime='" + day + "',book3backtime='" + day1
 										+ "' where usercard='" + user.getUsercard() + "'";
 								st.executeUpdate(sql);
 								return true;
@@ -302,6 +302,47 @@ public class Userdo implements UserDao {
 				bookres.setBookShuliang(rs.getInt(5));
 
 				list.add(bookres);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public List searchBook5(Book book, User user) {
+		String booknumber = book.getBookNumber();
+		List<User> list = new ArrayList();
+		String sql = "select * from user where book1num='" + booknumber + "' or book2num='" + booknumber
+				+ "' or book3num='" + booknumber + "'";
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				User useres = new User();
+				if (rs.getString(7).equals(booknumber) ) {
+					System.out.println("1");
+					useres.setUsercard(rs.getString(1));
+					useres.setBook1(rs.getString(4));
+					useres.setBook1num(rs.getString(7));
+					useres.setBook1borrowtime(rs.getDate(10));
+					useres.setBook1backtime(rs.getDate(11));
+				}else if(rs.getString(8).equals(booknumber)) {
+					System.out.println("2");
+					useres.setUsercard(rs.getString(1));
+					useres.setBook1(rs.getString(5));
+					useres.setBook1num(rs.getString(8));
+					useres.setBook1borrowtime(rs.getDate(12));
+					useres.setBook1backtime(rs.getDate(13));
+				}else {
+					System.out.println("3");
+					useres.setUsercard(rs.getString(1));
+					useres.setBook1(rs.getString(6));
+					useres.setBook1num(rs.getString(9));
+					useres.setBook1borrowtime(rs.getDate(14));
+					useres.setBook1backtime(rs.getDate(15));
+				}
+				list.add(useres);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

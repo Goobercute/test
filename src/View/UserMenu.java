@@ -62,7 +62,9 @@ public class UserMenu extends JFrame {
 		JButton button4 = new JButton("个人信息查询");
 		button4.setSize(dbutton);
 		contentPane.add(button4);
-
+		JButton button5 = new JButton("注销");
+		button5.setSize(dbutton);
+		contentPane.add(button5);
 		// 窗口大小无法改变
 		this.setResizable(false);
 
@@ -71,11 +73,21 @@ public class UserMenu extends JFrame {
 		button2.addActionListener(new backBookhandler());
 		button3.addActionListener(new bookSearchHandler());
 		button4.addActionListener(new SelfInfoHandler());
+		button5.addActionListener(new BackHandler());
 		user1.setUsercard(user.getUsercard());
 		user1.setPassword(user.getPassword());
 		setVisible(true);
 	}
+	class BackHandler implements ActionListener{
 
+		public void actionPerformed(ActionEvent e) {
+
+			Login lg = new Login();
+			lg.setVisible(true);
+			UserMenu.this.dispose();
+		}
+		
+	}
 	// 借书按钮事件
 	class borrowBookhandler implements ActionListener {
 

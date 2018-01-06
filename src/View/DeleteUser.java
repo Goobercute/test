@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Point;
@@ -50,6 +51,9 @@ public class DeleteUser extends JFrame {
 		usercard0.setBounds(100, 100, 170, 30);
 		usercard = new JTextField();
 		usercard.setBounds(300, 100, 100, 30);
+		JLabel inf = new JLabel("请先确保该用户已经还完书！！！");
+		inf.setBounds(160, 50, 200, 30);
+		inf.setForeground(Color.red);
 		JButton jb1 = new JButton("确认");
 		jb1.addActionListener(new DeleteHandler());
 		JButton jb2 = new JButton("返回");
@@ -60,6 +64,7 @@ public class DeleteUser extends JFrame {
 		contentPane.add(usercard);
 		contentPane.add(jb1);
 		contentPane.add(jb2);
+		contentPane.add(inf);
 		setVisible(true);
 	}
 

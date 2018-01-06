@@ -34,7 +34,7 @@ public class BookSearch1 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookSearch booksearch=new BookSearch(user1);
+					BookSearch1 booksearch=new BookSearch1(user1);
 					booksearch.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,10 +58,12 @@ public class BookSearch1 extends JFrame {
 		JButton Search2 = new JButton("作者查找");
 		JButton Search3 = new JButton("书号查找");
 		JButton Search4 = new JButton("出版社查找");
+		JButton Search5 = new JButton("借阅详情");
 		Search1.addActionListener(new Search1Handeler());
 		Search2.addActionListener(new Search2Handler());
 		Search3.addActionListener(new Search3Handler());
 		Search4.addActionListener(new Search4Handler());
+		Search5.addActionListener(new Search5Handler());
 		
 		JButton back = new JButton("返回");
 		back.addActionListener(new BackHandeler());
@@ -73,6 +75,7 @@ public class BookSearch1 extends JFrame {
 		contentPane.add(Search2);
 		contentPane.add(Search3);
 		contentPane.add(Search4);
+		contentPane.add(Search5);
 		contentPane.add(back);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -97,7 +100,7 @@ public class BookSearch1 extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			BookNameSearch booknamesearch = new BookNameSearch(user1);
+			BookNameSearch1 booknamesearch = new BookNameSearch1(user1);
 			booknamesearch.setVisible(true);
 			BookSearch1.this.dispose();
 		}
@@ -107,7 +110,7 @@ public class BookSearch1 extends JFrame {
 	//作者查找 
 	class Search2Handler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			BookAuthorSearch bookauthorsearch = new BookAuthorSearch(user1);
+			BookAuthorSearch1 bookauthorsearch = new BookAuthorSearch1(user1);
 			bookauthorsearch.setVisible(true);
 			BookSearch1.this.dispose();
 			
@@ -118,7 +121,7 @@ public class BookSearch1 extends JFrame {
 	//书号查找
 	class Search3Handler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			BookNumberSearch booknumbersearch = new BookNumberSearch(user1);
+			BookNumberSearch1 booknumbersearch = new BookNumberSearch1(user1);
 			booknumbersearch.setVisible(true);
 			BookSearch1.this.dispose();
 			
@@ -129,8 +132,18 @@ public class BookSearch1 extends JFrame {
 	//出版社查找
 	class Search4Handler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			BookPublisherSearch bookpublishersearch = new BookPublisherSearch(user1);
+			BookPublisherSearch1 bookpublishersearch = new BookPublisherSearch1(user1);
 			bookpublishersearch.setVisible(true);
+			BookSearch1.this.dispose();
+			
+		}
+
+	}
+	//借阅详情
+	class Search5Handler implements ActionListener{  
+		public void actionPerformed(ActionEvent e) {
+			BookReaderSearch bookauthorsearch = new BookReaderSearch(user1);
+			bookauthorsearch.setVisible(true);
 			BookSearch1.this.dispose();
 			
 		}

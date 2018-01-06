@@ -13,6 +13,7 @@ public interface UserDao {
 	public List searchBook2(Book book,User user);   //author
 	public List searchBook3(Book book,User user);  //number
 	public List searchBook4(Book book,User user);  //publisher
+	public List searchBook5(Book book,User user);  //reader
 	public List selfInfo(User user);
 	public boolean change(User user);
 	

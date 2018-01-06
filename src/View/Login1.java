@@ -63,15 +63,19 @@ public class Login1 extends JFrame {
 		lb.setForeground(Color.red);
 		lb.setFont(new Font("宋体", 0, 30));
 		lb.setBounds(250, 150, 400, 100);
-		
+		JButton jb1 = new JButton("返回");
+		jb1.setBounds(405,60,100,30);
 		jb.addActionListener(new LoginHandeler());
+		jb1.addActionListener(new BackHandler());
 		this.add(usercard);
 		this.add(bCenterCard);
 		this.add(bCenterPassword);
 		this.add(password);
 		this.add(jb);
 		this.add(lb);
+		this.add(jb1);
 		this.setVisible(true);
+	
 	}
 
 	class LoginHandeler implements ActionListener {
@@ -95,5 +99,15 @@ public class Login1 extends JFrame {
 			}
 		}
 
+	}
+	class BackHandler implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+
+			LoginChoice lg = new LoginChoice();
+			lg.setVisible(true);
+			Login1.this.dispose();
+		}
+		
 	}
 }

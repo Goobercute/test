@@ -1,18 +1,20 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class LoginChoice extends JFrame {
-	private JPanel contentPane;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -39,20 +41,30 @@ public class LoginChoice extends JFrame {
 		this.setIconImage(tk.getImage("images/Login.jpeg"));
 		// 设置窗口尺寸不可以调整
 		this.setResizable(false);
-		
-		this.setLayout(new GridLayout());
-		contentPane= new JPanel();
-		setContentPane(contentPane);
+
+		this.setLayout(null);
+
+		JLabel j1 = new JLabel("图书馆管理系统");
+		j1.setFont(new Font("宋体", 0, 30));
+		j1.setForeground(Color.red);
+		j1.setBounds(200, 150, 250, 50);
 		JButton Manager = new JButton("图书管理员登录");
+		Manager.setBounds(125, 20, 150, 30);
 		Manager.addActionListener(new ManagerLoginHandler());
 		JButton Reader = new JButton("借阅者登录");
+		Reader.setBounds(300, 20, 150, 30);
 		Reader.addActionListener(new ReaderLoginHandler());
-		contentPane.add(Manager);
-		contentPane.add(Reader);
+
+		JPanel jp = new JPanel();
+		jp.setLayout(null);
+		jp.add(Manager);
+		jp.add(Reader);
+		jp.add(j1);
 		
+		setContentPane(jp);	
 		setVisible(true);
 	}
-	
+
 	class ManagerLoginHandler implements ActionListener {
 
 		@Override
@@ -61,9 +73,9 @@ public class LoginChoice extends JFrame {
 			Login1 login = new Login1();
 			LoginChoice.this.dispose();
 		}
-		
+
 	}
-	
+
 	class ReaderLoginHandler implements ActionListener {
 
 		@Override
@@ -72,13 +84,7 @@ public class LoginChoice extends JFrame {
 			Login login = new Login();
 			LoginChoice.this.dispose();
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

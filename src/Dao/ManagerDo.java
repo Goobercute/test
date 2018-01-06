@@ -64,7 +64,7 @@ public class ManagerDo implements ManagerDao {
 			} else {
 				sql = "insert into book(bookname,bookauthor,publisher,booknumber,bookshuliang) values('"
 						+ book.getBookName() + "','" + book.getBookAuthor() + "','" + book.getBookPublisher() + "','"
-						+ book.getBookPublisher() + "','" + book.getBookShuliang() + "')";
+						+ book.getBookNumber() + "','" + book.getBookShuliang() + "')";
 				st.executeUpdate(sql);
 				return true;
 			}
@@ -103,7 +103,7 @@ public class ManagerDo implements ManagerDao {
 				userres.setName(rs.getString(3));
 				userres.setBook1(rs.getString(4));
 				userres.setBook2(rs.getString(5));
-				userres.setBook3(rs.getString(5));
+				userres.setBook3(rs.getString(6));
 				userres.setBook1borrowtime(rs.getDate(10));
 				userres.setBook2borrowtime(rs.getDate(12));
 				userres.setBook3borrowtime(rs.getDate(14));

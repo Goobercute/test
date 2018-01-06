@@ -23,30 +23,30 @@ import javax.swing.table.DefaultTableModel;
 import Controler.Control;
 import Model.Book;
 import Model.User;
-import View.BookNameSearch.BackHandeler;
-import View.BookNameSearch.NameSearchHandler;
+import View.BookNumberSearch.BackHandeler;
+import View.BookNumberSearch.NumberSearchHandler;
 
-public class BookPublisherSearch extends JFrame {
+public class BookNumberSearch1 extends JFrame {
 
 	private JPanel contentPane;
 	public static int choice;
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension d = tk.getScreenSize();
 	Runnable runnable;
-	JTextArea bookpublisher0;
-	JTextField bookpubliser1;
+	JTextArea booknumber0;
+	JTextField booknumber1;
 	JTable booklist;
-	 JScrollPane scrollPane;
+	JScrollPane scrollPane;
 	static User user1 = new User();
-	static Object [][] result;
+	static Object[][] result;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookPublisherSearch bookpublishersearch = new BookPublisherSearch(user1);
-					bookpublishersearch.setVisible(true);
+					BookNumberSearch1 booknumbersearch = new BookNumberSearch1(user1);
+					booknumbersearch.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,7 +55,7 @@ public class BookPublisherSearch extends JFrame {
 
 	}
 
-	public BookPublisherSearch(User user) {
+	public BookNumberSearch1(User user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		Point p = new Point((d.width - d.width / 3) / 2, (d.height - d.height / 3) / 2);
@@ -64,25 +64,23 @@ public class BookPublisherSearch extends JFrame {
 		this.setSize(d.width / 3, d.height / 3);
 		setContentPane(contentPane);
 		// 设置文本域组件
-		bookpublisher0 = new JTextArea("输入你要查询的出版社：");
-		bookpubliser1 = new JTextField(10);
-		
+		booknumber0 = new JTextArea("输入你要查询的书号：");
+		booknumber1 = new JTextField(10);
+
 		booklist = new JTable();
 		scrollPane = new JScrollPane(booklist);
 		add(scrollPane);
 		String[] columnNames = { "书名", "作者", "出版社", "书号", "数量" };
-		
-		
-		DefaultTableModel tableModel=new DefaultTableModel(result,columnNames){
-            public boolean isCellEditable(int row, int column)
-            {
-                return false;
-            }
-        };
-        booklist.setModel(tableModel);
+
+		DefaultTableModel tableModel = new DefaultTableModel(result, columnNames) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		booklist.setModel(tableModel);
 		// 设置按钮
 		JButton search = new JButton("确认查询");
-		search.addActionListener(new PublisherSearchHandler());
+		search.addActionListener(new NumberSearchHandler());
 		JButton back = new JButton("返回");
 		back.addActionListener(new BackHandeler());
 		// 布局
@@ -90,15 +88,15 @@ public class BookPublisherSearch extends JFrame {
 		this.setLayout(borderlayout);
 		// 添加 北部
 		JPanel centerPane1 = new JPanel();
-		centerPane1.add(bookpublisher0);
-		centerPane1.add(bookpubliser1);
+		centerPane1.add(booknumber0);
+		centerPane1.add(booknumber1);
 		centerPane1.add(search);
 		centerPane1.add(back);
 		this.add(centerPane1, BorderLayout.NORTH);
 		centerPane1.setLayout(new FlowLayout());
 		// 添加 中部
 		this.add(scrollPane, BorderLayout.CENTER);
-		
+
 		this.setResizable(false);
 		this.setVisible(true);
 
@@ -110,44 +108,45 @@ public class BookPublisherSearch extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method s
-			BookSearch booksearch = new BookSearch(user1);
+			BookSearch1 booksearch = new BookSearch1(user1);
 			booksearch.setVisible(true);
 			result= null;
-			BookPublisherSearch.this.dispose();
+			BookNumberSearch1.this.dispose();
 		}
 
 	}
 
-	class PublisherSearchHandler implements ActionListener {
+	class NumberSearchHandler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			Control control = new Control();
 			Book book = new Book();
-			Book bookresult =new Book();
-			//获得要搜索的书名
-			book.setBookPublisher(bookpubliser1.getText().toString());
-			//返回结果
-			List<Book> list = control.Search4(book, user1);
-			if (list.size()!=0) { 
+			Book bookresult = new Book();
+			// 获得要搜索的书名
+			book.setBookNumber(booknumber1.getText().toString());
+			// 返回结果
+			List<Book> list = control.Search3(book, user1);
+			if (list.size() != 0) {
 
-			result = new Object [list.size()][5];
-			for(int i=0;i<list.size();i++) {
-				bookresult = list.get(i);
-				result[i][0]=bookresult.getBookName();
-				result[i][1]=bookresult.getBookAuthor();
-				result[i][2]=bookresult.getBookPublisher();
-				result[i][3]=bookresult.getBookNumber();
-				result[i][4]=bookresult.getBookShuliang();
-			}
-			BookPublisherSearch.this.dispose();
-			new BookPublisherSearch(user1);
-			}else {
+				result = new Object[list.size()][5];
+				for (int i = 0; i < list.size(); i++) {
+					bookresult = list.get(i);
+					result[i][0] = bookresult.getBookName();
+					result[i][1] = bookresult.getBookAuthor();
+					result[i][2] = bookresult.getBookPublisher();
+					result[i][3] = bookresult.getBookNumber();
+					result[i][4] = bookresult.getBookShuliang();
+				}
+				BookNumberSearch1.this.dispose();
+				new BookNumberSearch1(user1);
+			} else {
 				JOptionPane.showMessageDialog(null, "【失败啦】", "没有找到该书信息", JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 		}
+
 
 
 	}

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -20,8 +21,8 @@ import Controler.Control;
 import Model.User;
 
 public class Login extends JFrame {
-	JTextArea bCenterCard;
-	JTextArea bCenterPassword;
+	JLabel bCenterCard;
+	JLabel bCenterPassword;
 	JTextField usercard;
 	JPasswordField password;
 	static User user = new User();
@@ -52,53 +53,38 @@ public class Login extends JFrame {
 		this.setResizable(false);
 
 		// 设置布局方式
-		this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		// 设置文本域组件
-		bCenterCard = new JTextArea("卡号：");
-		bCenterPassword = new JTextArea("密码：");
-		JTextArea bNorth = new JTextArea("欢迎登陆");
+		bCenterCard = new JLabel("卡号：");
+		bCenterCard.setBounds(50,50,100,30);
+		bCenterPassword = new JLabel("密码：");
+		bCenterPassword.setBounds(50,80,100,30);
+		JLabel bNorth = new JLabel("欢迎登陆");
+		bNorth.setBounds(225,15,100,30);
 		// 设置按钮以及事件
 		JButton bCenterLogin = new JButton("确认登陆");
+		bCenterLogin.setBounds(250,50,100,30);
 		bCenterLogin.addActionListener(new LoginHandeler());
 		JButton bCenterChange = new JButton("修改密码");
+		bCenterChange.setBounds(250,80,100,30);
 		bCenterChange.addActionListener(new ChangeHandeler());
+		JButton back = new JButton("返回");
+		back.setBounds(380,65,100,30);
+		back.addActionListener(new BackHandler());
 		// 输入框
 		usercard = new JTextField();
+		usercard.setBounds(100,50,120,30);
 		password = new JPasswordField();
-		// 容器嵌套
-		JPanel centerPanel = new JPanel();
-		centerPanel.add(bCenterCard);
-		centerPanel.add(bCenterPassword);
-
-		JPanel centerPanel1 = new JPanel();
-		centerPanel1.add(usercard);
-		centerPanel1.add(password);
-
-		JPanel centerPanel2 = new JPanel();
-		centerPanel2.add(bCenterLogin);
-		centerPanel2.add(bCenterChange);
-
-		// 中部容器垂直方向
-		BoxLayout centerBox = new BoxLayout(centerPanel, BoxLayout.Y_AXIS);
-		centerPanel.setLayout(centerBox);
-		// 中部容器输入框垂直方向
-		BoxLayout centerBox1 = new BoxLayout(centerPanel1, BoxLayout.Y_AXIS);
-		centerPanel1.setLayout(centerBox1);
-		// 中部按钮垂直方向
-		BoxLayout centerBox2 = new BoxLayout(centerPanel2, BoxLayout.Y_AXIS);
-		centerPanel2.setLayout(centerBox2);
-
-		// 中部总体水平方向
-		JPanel Center = new JPanel();
-		Center.add(centerPanel);
-		Center.add(centerPanel1);
-		Center.add(centerPanel2);
-		BoxLayout centerBox3 = new BoxLayout(Center, BoxLayout.X_AXIS);
-		Center.setLayout(centerBox3);
+		password.setBounds(100,80,120,30);
 		// 添加
-		this.add(bNorth, BorderLayout.NORTH);
-		this.add(Center, BorderLayout.CENTER);
-
+		this.add(bCenterCard);
+		this.add(bCenterPassword);
+		this.add(bNorth);
+		this.add(bCenterLogin);
+		this.add(bCenterChange);
+		this.add(usercard);
+		this.add(password);
+		this.add(back);
 		this.setVisible(true);
 	}
 
@@ -136,6 +122,15 @@ public class Login extends JFrame {
 		}
 		
 	}
+	class BackHandler implements ActionListener{
 
+		public void actionPerformed(ActionEvent e) {
+
+			LoginChoice lg = new LoginChoice();
+			lg.setVisible(true);
+			Login.this.dispose();
+		}
+		
+	}
 
 }

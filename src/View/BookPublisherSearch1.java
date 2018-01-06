@@ -23,11 +23,10 @@ import javax.swing.table.DefaultTableModel;
 import Controler.Control;
 import Model.Book;
 import Model.User;
-import View.BookNameSearch.BackHandeler;
-import View.BookNameSearch.NameSearchHandler;
+import View.BookPublisherSearch.BackHandeler;
+import View.BookPublisherSearch.PublisherSearchHandler;
 
-public class BookPublisherSearch extends JFrame {
-
+public class BookPublisherSearch1 extends JFrame {
 	private JPanel contentPane;
 	public static int choice;
 	Toolkit tk = Toolkit.getDefaultToolkit();
@@ -45,7 +44,7 @@ public class BookPublisherSearch extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookPublisherSearch bookpublishersearch = new BookPublisherSearch(user1);
+					BookPublisherSearch1 bookpublishersearch = new BookPublisherSearch1(user1);
 					bookpublishersearch.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +54,7 @@ public class BookPublisherSearch extends JFrame {
 
 	}
 
-	public BookPublisherSearch(User user) {
+	public BookPublisherSearch1(User user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		Point p = new Point((d.width - d.width / 3) / 2, (d.height - d.height / 3) / 2);
@@ -110,10 +109,10 @@ public class BookPublisherSearch extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method s
-			BookSearch booksearch = new BookSearch(user1);
+			BookSearch1 booksearch = new BookSearch1(user1);
 			booksearch.setVisible(true);
 			result= null;
-			BookPublisherSearch.this.dispose();
+			BookPublisherSearch1.this.dispose();
 		}
 
 	}
@@ -141,8 +140,8 @@ public class BookPublisherSearch extends JFrame {
 				result[i][3]=bookresult.getBookNumber();
 				result[i][4]=bookresult.getBookShuliang();
 			}
-			BookPublisherSearch.this.dispose();
-			new BookPublisherSearch(user1);
+			BookPublisherSearch1.this.dispose();
+			new BookPublisherSearch1(user1);
 			}else {
 				JOptionPane.showMessageDialog(null, "【失败啦】", "没有找到该书信息", JOptionPane.ERROR_MESSAGE);
 			}

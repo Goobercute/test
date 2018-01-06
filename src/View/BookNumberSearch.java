@@ -110,7 +110,9 @@ public class BookNumberSearch extends JFrame {
 			// TODO Auto-generated method s
 			BookSearch booksearch = new BookSearch(user1);
 			booksearch.setVisible(true);
+			result= null;
 			BookNumberSearch.this.dispose();
+			
 		}
 
 	}

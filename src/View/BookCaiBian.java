@@ -53,7 +53,9 @@ public class BookCaiBian extends JFrame {
 		this.setSize(d.width / 3, d.height / 3);
 		setContentPane(contentPane);
 		setLayout(null);
-
+		this.setResizable(false);
+		JLabel info = new JLabel("若该书号已经存在，则默认修改信息");
+		info.setBounds(350, 30, 250, 30);
 		// 书名
 		JLabel bookname = new JLabel("输入书名");
 		bookname.setBounds(50, 30, 100, 30);
@@ -191,7 +193,7 @@ public class BookCaiBian extends JFrame {
 		back.setBounds(400, 150, 100, 30);
 		back.addActionListener(new BackHandeler());
 
-
+		contentPane.add(info);
 		contentPane.add(bookname);
 		contentPane.add(bookname1);
 		contentPane.add(booknumber);

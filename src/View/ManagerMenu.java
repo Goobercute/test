@@ -54,6 +54,7 @@ public class ManagerMenu extends JFrame {
 
 		JButton button2 = new JButton("清除库存");
 		button2.setSize(dbutton);
+		button2.addActionListener(new Deletebookhandler());
 		contentPane.add(button2);
 
 		JButton button3 = new JButton("图书信息查询");
@@ -65,12 +66,25 @@ public class ManagerMenu extends JFrame {
 		button4.setSize(dbutton);
 		button4.addActionListener(new UserManagehandler());
 		contentPane.add(button4);
+		JButton button5 = new JButton("返回");
+		button5.setSize(dbutton);
+		button5.addActionListener(new BackHandler());
+		contentPane.add(button5);
 
 		// 窗口大小无法改变
 		this.setResizable(false);
 		setVisible(true);
 	}
+	class BackHandler implements ActionListener{
 
+		public void actionPerformed(ActionEvent e) {
+
+			Login1 lg = new Login1();
+			lg.setVisible(true);
+			ManagerMenu.this.dispose();
+		}
+		
+	}
 	class BookCaiBianhandler implements ActionListener {
 
 		@Override
@@ -96,6 +110,15 @@ public class ManagerMenu extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			UserManage booksearch1 = new UserManage();
+			ManagerMenu.this.dispose();
+
+		}
+
+	}
+	class Deletebookhandler implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			DeleteBook booksearch1 = new DeleteBook();
 			ManagerMenu.this.dispose();
 
 		}

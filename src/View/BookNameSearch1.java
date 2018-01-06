@@ -26,15 +26,14 @@ import Model.User;
 import View.BookNameSearch.BackHandeler;
 import View.BookNameSearch.NameSearchHandler;
 
-public class BookPublisherSearch extends JFrame {
-
+public class BookNameSearch1 extends JFrame {
 	private JPanel contentPane;
 	public static int choice;
 	Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension d = tk.getScreenSize();
 	Runnable runnable;
-	JTextArea bookpublisher0;
-	JTextField bookpubliser1;
+	JTextArea bookname0;
+	JTextField bookname1;
 	JTable booklist;
 	 JScrollPane scrollPane;
 	static User user1 = new User();
@@ -45,8 +44,8 @@ public class BookPublisherSearch extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BookPublisherSearch bookpublishersearch = new BookPublisherSearch(user1);
-					bookpublishersearch.setVisible(true);
+					BookNameSearch1 booknamesearch = new BookNameSearch1(user1);
+					booknamesearch.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,7 +54,7 @@ public class BookPublisherSearch extends JFrame {
 
 	}
 
-	public BookPublisherSearch(User user) {
+	public BookNameSearch1(User user) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		Point p = new Point((d.width - d.width / 3) / 2, (d.height - d.height / 3) / 2);
@@ -64,8 +63,8 @@ public class BookPublisherSearch extends JFrame {
 		this.setSize(d.width / 3, d.height / 3);
 		setContentPane(contentPane);
 		// 设置文本域组件
-		bookpublisher0 = new JTextArea("输入你要查询的出版社：");
-		bookpubliser1 = new JTextField(10);
+		bookname0 = new JTextArea("输入你要查询的书名：");
+		bookname1 = new JTextField(10);
 		
 		booklist = new JTable();
 		scrollPane = new JScrollPane(booklist);
@@ -82,7 +81,7 @@ public class BookPublisherSearch extends JFrame {
         booklist.setModel(tableModel);
 		// 设置按钮
 		JButton search = new JButton("确认查询");
-		search.addActionListener(new PublisherSearchHandler());
+		search.addActionListener(new NameSearchHandler());
 		JButton back = new JButton("返回");
 		back.addActionListener(new BackHandeler());
 		// 布局
@@ -90,8 +89,8 @@ public class BookPublisherSearch extends JFrame {
 		this.setLayout(borderlayout);
 		// 添加 北部
 		JPanel centerPane1 = new JPanel();
-		centerPane1.add(bookpublisher0);
-		centerPane1.add(bookpubliser1);
+		centerPane1.add(bookname0);
+		centerPane1.add(bookname1);
 		centerPane1.add(search);
 		centerPane1.add(back);
 		this.add(centerPane1, BorderLayout.NORTH);
@@ -110,15 +109,15 @@ public class BookPublisherSearch extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method s
-			BookSearch booksearch = new BookSearch(user1);
+			BookSearch1 booksearch = new BookSearch1(user1);
 			booksearch.setVisible(true);
 			result= null;
-			BookPublisherSearch.this.dispose();
+			BookNameSearch1.this.dispose();
 		}
 
 	}
 
-	class PublisherSearchHandler implements ActionListener {
+	class NameSearchHandler implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -127,9 +126,9 @@ public class BookPublisherSearch extends JFrame {
 			Book book = new Book();
 			Book bookresult =new Book();
 			//获得要搜索的书名
-			book.setBookPublisher(bookpubliser1.getText().toString());
+			book.setBookName(bookname1.getText().toString());
 			//返回结果
-			List<Book> list = control.Search4(book, user1);
+			List<Book> list = control.Search1(book, user1);
 			if (list.size()!=0) { 
 
 			result = new Object [list.size()][5];
@@ -141,14 +140,24 @@ public class BookPublisherSearch extends JFrame {
 				result[i][3]=bookresult.getBookNumber();
 				result[i][4]=bookresult.getBookShuliang();
 			}
-			BookPublisherSearch.this.dispose();
-			new BookPublisherSearch(user1);
+			BookNameSearch1.this.dispose();
+			new BookNameSearch1(user1);
 			}else {
 				JOptionPane.showMessageDialog(null, "【失败啦】", "没有找到该书信息", JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}
 
+		public String listToString(List list, char separator) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < list.size(); i++) {
+				sb.append(list.get(i));
+				if (i < list.size() - 1) {
+					sb.append(separator);
+				}
+			}
+			return sb.toString();
+		}
 
 	}
 }

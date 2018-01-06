@@ -62,6 +62,11 @@ public class Control {
 		List<User> list = userdo.selfInfo(user);
 		return list;
 	}
+	public List Search5(Book book, User user) {
+		Userdo userdo = new Userdo();
+		List<User> list = userdo.searchBook5(book, user);
+		return list;
+	}
 
 	public boolean Change(User user) {
 		boolean flag = false;
